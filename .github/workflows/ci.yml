@@ -1,0 +1,30 @@
+### .github/workflows/ci.yml
+
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with: {python-version: "3.11"}
+      - name: Install deps
+        run: pip install -r requirements.txt
+      - name: Unit tests & coverage
+        run: pytest --cov=backend --cov-fail-under=80 --cov-branch --cov-report=term-missing
+      - name: Lint
+        run: |
+          pip install ruff pyright
+          ruff check .
+          pyright
+      - name: Docker smoke test
+        run: |
+          docker compose -f docker-compose.yml up -d --build
+          sleep 15
+          curl -f http://localhost:8000/healthz
+          docker compose down
+
+

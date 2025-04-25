@@ -1,0 +1,13 @@
+## requirements.in  (source for pip‑compile)
+
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+pydantic>=2.7.0
+pydantic-settings>=2.0.0
+neo4j>=5.16.0
+redis>=5.0.0
+fastapi-limiter>=0.1.4
+ortools>=9.9.3963
+prometheus-client>=0.17.0
+backoff>=2.2.1
+python-dotenv>=1.0.0
