@@ -5,8 +5,9 @@ import json
 import pathlib
 
 import backoff
-from app.core.config import settings
 from neo4j import GraphDatabase, ServiceUnavailable
+
+from backend.app.core.config import settings
 
 from .model import MenuItem
 

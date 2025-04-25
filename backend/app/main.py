@@ -1,9 +1,10 @@
 ## backend/app/main.py
 
 from fastapi import FastAPI, Response
-from optimizer import model, optimizer, store
 from prometheus_client import Counter, generate_latest
 from pydantic import BaseModel
+
+from backend.optimizer import model, optimizer, store
 
 app = FastAPI(title="Menu Optimizer API", version="0.1.0")
 
