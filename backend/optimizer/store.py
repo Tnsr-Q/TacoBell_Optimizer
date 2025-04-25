@@ -5,10 +5,10 @@ import json
 import pathlib
 
 import backoff
-from neo4j import GraphDatabase, ServiceUnavailable
+from neo4j import GraphDatabase
+from neo4j.exceptions import ServiceUnavailable  # Updated import path
 
 from backend.app.core.config import settings
-
 from .model import MenuItem
 
 _seed_path = pathlib.Path(__file__).parent.parent.parent / "seed" / "menu.json"
