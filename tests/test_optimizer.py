@@ -3,7 +3,7 @@
 import json
 import pathlib
 
-from optimizer import model, optimizer
+from backend.optimizer import model, optimizer
 
 data = json.loads(
     (pathlib.Path(__file__).parent.parent / "seed" / "menu.json").read_text()
