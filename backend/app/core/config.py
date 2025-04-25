@@ -2,6 +2,7 @@
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+
 class Settings(BaseSettings):
     NEO4J_BOLT_URL: str = "bolt://neo4j:7687"
     REDIS_URL: str = "redis://redis:6379/0"
@@ -10,6 +11,5 @@ class Settings(BaseSettings):
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
 
+
 settings = Settings()
-
-

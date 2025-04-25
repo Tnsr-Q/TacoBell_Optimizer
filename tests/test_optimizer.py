@@ -1,12 +1,17 @@
 ## tests/test_optimizer.py
 
-from optimizer import optimizer, model
-import json, pathlib
+import json
+import pathlib
 
-data = json.loads((pathlib.Path(__file__).parent.parent / "seed" / "menu.json").read_text())
+from optimizer import model, optimizer
+
+data = json.loads(
+    (pathlib.Path(__file__).parent.parent / "seed" / "menu.json").read_text()
+)
 base_items = [model.MenuItem(**b) for b in data["bases"]]
 target = model.MenuItem(**data["specialty"])
 opt = optimizer.Optimizer(base_items, data["addon_costs"], data["special_requests"])
+
 
 def test_mexican_pizza_returns_original():
     res = opt.hack(target)
