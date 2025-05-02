@@ -1,16 +1,24 @@
 ## backend/optimizer/optimizer.py
 
+from typing import Dict, List
+
 from ortools.sat.python import cp_model
-from .model import MenuItem, HackResult
-from typing import List, Dict
+
+from .model import HackResult, MenuItem
+
 
 class Optimizer:
     """MILP / CP‑SAT cost minimizer.
     k_max – max number of base items (default 2).
     """
 
-    def __init__(self, base_items: List[MenuItem], addon_costs: Dict[str, float],
-                 special_requests: Dict[str, dict], k_max: int = 2):
+    def __init__(
+        self,
+        base_items: List[MenuItem],
+        addon_costs: Dict[str, float],
+        special_requests: Dict[str, dict],
+        k_max: int = 2,
+    ):
         self.base_items = base_items
         self.addon_costs = addon_costs
         self.special_requests = special_requests
@@ -58,16 +66,17 @@ class Optimizer:
         status = solver.Solve(mdl)
 
         if status != cp_model.OPTIMAL:
-            return HackResult([], [], target.price, 0, 1, message=f"Order original {target.name}")
+            return HackResult(
+                [], [], target.price, 0, 1, message=f"Order original {target.name}"
+            )
 
         total = solver.ObjectiveValue()
         savings = target.price - total
         if savings <= 0.01:
-            return HackResult([], [], target.price, 0, 1, message=f"Order original {target.name}")
+            return HackResult(
+                [], [], target.price, 0, 1, message=f"Order original {target.name}"
+            )
 
         bases = [self.base_items[b].name for b in B if solver.Value(y[b])]
         # TODO: build customizations list properly
         return HackResult(bases, [], total, savings, 1.0)
-
-
-

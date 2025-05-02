@@ -1,14 +1,15 @@
-## docker-compose.yml
-
-version: "3.9"
 services:
   api:
-    build: ./docker
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
     command: uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --workers 2
     volumes: [".:/code"]
     depends_on: [neo4j, redis]
     environment:
       - PYTHONPATH=/code
+    ports:
+      - "8000:8000"
   neo4j:
     image: neo4j:5.16
     environment:
@@ -17,5 +18,3 @@ services:
   redis:
     image: redis:7
     ports: ["6379:6379"]
-
-

@@ -2,7 +2,8 @@
 
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Dict
+from typing import Dict, List
+
 
 class ItemType(str, Enum):
     TACO = "taco"
@@ -11,6 +12,7 @@ class ItemType(str, Enum):
     CHALUPA = "chalupa"
     QUESADILLA = "quesadilla"
 
+
 @dataclass(frozen=True)
 class MenuItem:
     id: str
@@ -18,6 +20,7 @@ class MenuItem:
     price: float
     type: ItemType
     ingredients: List[str]
+
 
 @dataclass
 class HackResult:
@@ -28,5 +31,3 @@ class HackResult:
     feasibility: float
     message: str | None = None
     metadata: Dict[str, str] = field(default_factory=dict)
-
-
