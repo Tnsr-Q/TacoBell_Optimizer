@@ -1,0 +1,54 @@
+{
+  "bases": [
+    {
+      "id": "SOFT_TACO",
+      "name": "Soft Taco",
+      "price": 1.99,
+      "type": "taco",
+      "ingredients": [
+        "ING_TORTILLA_FLOUR",
+        "ING_BEEF",
+        "ING_LETTUCE_DICED",
+        "ING_CHEESE_CHEDDAR"
+      ]
+    },
+    {
+      "id": "BEAN_BURRITO",
+      "name": "Bean Burrito",
+      "price": 2.49,
+      "type": "burrito",
+      "ingredients": [
+        "ING_TORTILLA_FLOUR_LARGE",
+        "ING_BEANS_REFRIED",
+        "ING_ONIONS",
+        "ING_RED_SAUCE"
+      ]
+    }
+  ],
+
+  "specialty": {
+    "id": "MEXICAN_PIZZA",
+    "name": "Mexican Pizza",
+    "price": 4.99,
+    "type": "flatbread",
+    "ingredients": [
+      "ING_SHELL_FLATBREAD",
+      "ING_BEANS_REFRIED",
+      "ING_BEEF",
+      "ING_TOMATO_DICED",
+      "ING_CHEESE_BLEND"
+    ]
+  },
+
+  "addon_costs": {
+    "ING_BEEF": 0.65,
+    "ING_BEANS_REFRIED": 0.35,
+    "ING_CHEESE_CHEDDAR": 0.40,
+    "ING_TOMATO_DICED": 0.25
+  },
+
+  "special_requests": {
+    "GRILLED":        { "description": "Grilled",        "cost": 0.00 },
+    "EXTRA_CHEESE":   { "description": "Extra Cheese",   "cost": 0.85 }
+  }
+}
